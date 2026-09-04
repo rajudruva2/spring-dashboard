@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deployment Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <div>
+            <h1>Deployment Dashboard</h1>
+            <p>Spring Boot backend with paginated deployment data</p>
+        </div>
+        <button id="refreshBtn" class="refresh-btn">↻ Refresh</button>
+    </header>
+
+    <section class="summary-grid">
+        <div class="summary-card">
+            <span>Total Services</span>
+            <strong id="totalServices">-</strong>
+        </div>
+        <div class="summary-card">
+            <span>Active</span>
+            <strong id="activeServices">-</strong>
+        </div>
+        <div class="summary-card">
+            <span>Failed</span>
+            <strong id="failedServices">-</strong>
+        </div>
+        <div class="summary-card">
+            <span>UAT</span>
+            <strong id="uatServices">-</strong>
+        </div>
+        <div class="summary-card">
+            <span>PROD</span>
+            <strong id="prodServices">-</strong>
+        </div>
+    </section>
+
+    <section class="toolbar">
+        <input id="searchInput" type="text" placeholder="Search service...">
+
+        <select id="environmentSelect">
+            <option value="">All environments</option>
+            <option value="UAT">UAT</option>
+            <option value="PROD">PROD</option>
+            <option value="DEV">DEV</option>
+        </select>
+
+        <select id="statusSelect">
+            <option value="">All statuses</option>
+            <option value="ACTIVE">Active</option>
+            <option value="FAILED">Failed</option>
+        </select>
+
+        <button id="clearBtn" class="secondary-btn">Clear</button>
+    </section>
+
+    <section class="table-card">
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Environment</th>
+                    <th>Version</th>
+                    <th>Status</th>
+                    <th>Build</th>
+                    <th>Last Deployment</th>
+                    <th>Deployed By</th>
+                </tr>
+                </thead>
+                <tbody id="deploymentBody">
+                <tr>
+                    <td colspan="7" class="loading">Loading...</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination">
+            <span id="pageInfo">Loading...</span>
+            <div>
+                <button id="prevBtn">← Previous</button>
+                <span id="pageNumbers"></span>
+                <button id="nextBtn">Next →</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="error" class="error hidden"></div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
